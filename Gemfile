@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'pundit'
-gem 'bootstrap'
+gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
 
 group :production do
