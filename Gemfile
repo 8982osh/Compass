@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+gem 'pundit'
+gem 'bootstrap'
+gem 'devise'
+
 group :production do
   gem 'pg'
   gem 'rails_12factor'
