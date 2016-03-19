@@ -11,7 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160313060005) do
+ActiveRecord::Schema.define(version: 20160315213758) do
+
+  create_table "dogs", force: :cascade do |t|
+    t.string   "animal_id"
+    t.string   "name"
+    t.string   "gender"
+    t.integer  "weight"
+    t.string   "age"
+    t.string   "breed_primary"
+    t.string   "breed_secondary"
+    t.boolean  "purebreed"
+    t.boolean  "blend"
+    t.string   "cat_compatibility"
+    t.string   "dog_compatibility"
+    t.string   "human_compatibility"
+    t.string   "energy_level"
+    t.string   "temperament"
+    t.integer  "fee"
+    t.text     "description"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

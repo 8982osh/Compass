@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'pundit'
-gem 'bootstrap-sass', '~> 3.3.6'
+
+gem 'simple_form'
+gem 'bootstrap-sass'
 gem 'devise'
 
 group :production do
