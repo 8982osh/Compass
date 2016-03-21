@@ -1,5 +1,6 @@
 class DogsController < ApplicationController
-  def home
+  def index
+    @dogs = Dogs.all
   end
 
   def about
@@ -10,27 +11,26 @@ class DogsController < ApplicationController
   end
 
   def create
-    # @dog.name = @dog.name.capitalize
     @dog = Dog.new(params.require(:dog))
     if @dog.save
-      
+      @dog.name = @dog.name.capitalize
+      @dog.animal_id = "A" + #{animal_id}
       flash[:notice] = "Saved successful."
       redirect_to @dog
     else
-      # render :new
-      # redirect, notice: @dog.errors.full_messages
       flash[:error] = "Error. Please review all fields and submit again."
       render :new
     end
   end
 
   def edit
-    
+    @dog = Dog.find(params[:id])  
   end
 
   def contact
   end
 
   def show
+    
   end
 end

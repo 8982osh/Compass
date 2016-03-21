@@ -1,17 +1,24 @@
 class Dog < ActiveRecord::Base    
 
+mount_uploader :avatar, AvatarUploader
+
 # before_save :capitalize_name
 
 # def capitalize_name
 	# name.capitalize!
 # end
   has_many :fosters
-
+  has_one :cat
+  has_one :dog
+  has_one :human
+  has_one :energy
+  has_one :temperament
+  has_many :breed
 
   validates :animal_id, length: { is: 7 }, presence: true 
 
-  GENDER = ["Male", "Female"]
-  AGE = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+
+  
   CAT = ["Unknown", "Good with cats", "Not good with cats"]
   DOG = ["Unknown", "Good with dogs", "Good with male dogs only", "Good with female dogs only", "Not good with other dogs"]
   HUMAN = ["Good with women only", "Good with men only", "Good with adults and kids", "Not good with kids"]

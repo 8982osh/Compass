@@ -1,24 +1,39 @@
+<h1>New Dog</h1>
 <% simple_form_for @dog do |f| %>
   <%= f.error_notification %>
   <%= f.input :animal_id, hint: "Animal ID begins with letter A" %>
   <%= f.input :name %>
-  <%= f.input :gender, collection: 'Male'...'Female', Gender::GENDER, as: :radio_buttons %>
-  <%= f.input_text :weight, hint: "Enter whole numbers." %> 
-  <%= f.input :age, collection: 1..15, prompt: "Select age", Age::AGE %>
-  <%= f.input :breed, collection: 'Affenpinscher'..'Yorkshire Terrier', prompt: "Primary Breed", Breed::BREED %>
-  <%= f.input :breed, collection: 'Affenpinscher'..'Yorkshire Terrier', prompt: "Secondary Breed", Breed::BREED %>              
-  <%= f.input :breed, collection: "Purebreed".."Blend", as: :radio_buttions %>   
-  <%= f.input :cat_compatibility, collection: 'Unknown'..'Not good with cats', Cat::CAT %>
-  <%= f.input :dog_compatibility, collection: 'Unknown'..'Not good with other dogs', Dog::DOG %>
-  <%= f.input :human_compatibility, collection: 'Good with women only'..'Not good with kids', Human::HUMAN %>
-  <%= f.input :energy_level, collection: 'Very low'..'Very High', Energy::ENERGY %>
-  <%= f.input :temperament, collection: 'Very Submissive'..'Very Dominant', Temperament::TEMPERAMENT %>  
+  <%= f.input :gender, collection: [:male, :female], as: :radio_buttons %>
+  <%= f.input :weight %> 
+  <%= f.input :age, collection: 1..12 %>
+  <%= f.association collection_select: Dog::BREED, label: "Primary Breed" %>
+  <%= f.association :breed, label: "Secondary Breed" %>              
+  <%= f.input :purebreed, collection: [:purebreed, :blend], as: :radio_buttons %>   
+  <%= f.input :cat, collection: ["Unknown", "Good with cats", "Not good with cats"] %>
+  <%= f.input :dog, collection: ["Unknown", "Good with dogs", "Good with male dogs only", 
+                                 "Good with female dogs only", "Not good with other dogs"] %>
+  <%= f.input :human, collection: ["Good with women only", "Good with men only", "Good with adults and kids", "Not good with kids"] %>
+  <%= f.input :energy, collection: ["Very low", "Low", "Average", "High", "Very High"] %>
+  <%= f.input :temperament, collection: ["Very submissive", "Somewhat submissive", 
+                                         "Average Submissive", "Somewhat Dominant", "Very Dominant"] %>  
   <%= f.input :fee %>
   <%= f.input :description, :size => "40x5" %>
       
-  <%= form_tag @dog do |f| %>
-    <%= f.file_field :picture %>
-  <% end %>
+  <%= form_for @dog, html: { multipart: true } do |f| %>
+  <p>
+    <label>Dog Avatar</label>
+    <%= image_tag(@user.avatar_url) if @dog.avatar? %>
+    <%= f.file_field :avatar %>
+  </p>
+
+  <p>
+    <label>
+      <%= f.check_box :remove_avatar %>
+      Remove avatar
+    </label>
+  </p>
+<% end %>
      
   <%= f.button :submit, label: "Save" %>
 <% end %>
+
