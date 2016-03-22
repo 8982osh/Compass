@@ -1,22 +1,3 @@
-<h1>Adoptable Dogs</h1>
+<h1 id="adopt-title">Enter Dog Postings</h1>
 
-<% @dogs.each do |dog| %>
-
-image
-<li><% dog.animal_id %></li>
-<li><% dog.name %></li>
-<li><% dog.gender %></li>
-<li><% dog.weight %></li>
-<li><% dog.age %></li>
-<li><% dog.primary_breed %></li>
-<li><% dog.secondary_breed %></li>
-<li><% dog.purebreed %></li>
-<li><% dog.blend %></li>
-<li><% dog.cat %></li>
-<li><% dog.dog %></li>
-<li><% dog.human %></li>
-<li><% dog.energy %></li>
-<li><% dog.temperament %></li>
-<li><% dog.fee %></li>
-<li><% dog.description %></li>
-<% end %>
+<%= render partial: 'dogs/form' %>

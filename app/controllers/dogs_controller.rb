@@ -11,10 +11,10 @@ class DogsController < ApplicationController
   end
 
   def create
-    @dog = Dog.new(params.require(:dog))
+    @dog = Dog.new(params[:dog])
     if @dog.save
       @dog.name = @dog.name.capitalize
-      @dog.animal_id = "A" + #{animal_id}
+      @dog.animal_id = "A" + @dog.animal_id
       flash[:notice] = "Saved successful."
       redirect_to @dog
     else
@@ -31,6 +31,6 @@ class DogsController < ApplicationController
   end
 
   def show
-    
+    @dog = Dog.find(params[:id]) 
   end
 end

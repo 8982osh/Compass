@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :dogs
+ 
+  
+  resources :dogs 
 
   get 'about' => 'welcome#about'
 
@@ -9,3 +11,4 @@ Rails.application.routes.draw do
 
   root to: 'welcome#index'  
 end
+
