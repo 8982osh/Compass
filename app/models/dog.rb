@@ -3,7 +3,7 @@ class Dog < ActiveRecord::Base
 mount_uploader :avatar, AvatarUploader
 
 # before_save :capitalize_name
-attr_accessor :cat, :dog, :human, :energy, :temperament, :breed
+attr_accessor :type, :cat, :dog, :human, :energy, :temperament, :breed
   
 
   validates :animal_id, length: { is: 7 }, presence: true 

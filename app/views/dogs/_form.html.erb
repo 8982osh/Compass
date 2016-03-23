@@ -1,14 +1,15 @@
 
-<%= simple_form_for @dog, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @dog, :html => { :class => 'form-vertical' } do |f| %>
   <%= f.error_notification %>
+ 
   <%= f.input :animal_id, hint: "Animal ID begins with letter A" %>
   <%= f.input :name %>
-  <%= f.input :gender, collection: [:male, :female], as: :radio_buttons %>
+  <%= f.input :gender, collection: ['Male', 'Female'], as: :radio_buttons %>
   <%= f.input :weight %> 
   <%= f.input :age, collection: 1..12 %>
+  <%= f.input :type, collection: [:purebreed, :blend], as: :radio_buttons %> 
   <%= f.input :breed, collection: Dog::BREED, label: "Primary Breed" %>
   <%= f.input :breed, collection: Dog::BREED, label: "Secondary Breed" %>              
-  <%= f.input :purebreed, collection: [:purebreed, :blend], as: :radio_buttons %>   
   <%= f.input :cat, collection: ['Unknown', 'Good with cats', 'Not good with cats'] %>
   <%= f.input :dog, collection: ['Unkown', 'Good with dogs', 'Good with male dogs only', 
                                  'Good with female dogs only', 'Not good with other dogs'] %>
@@ -21,7 +22,7 @@
       
   <%= form_for @dog, html: { multipart: true } do |f| %>
   <p>
-    <label>Dog Avatar</label>
+    <label>Dog Picture</label>
     <%= image_tag(@user.avatar_url) if @dog.avatar? %>
     <%= f.file_field :avatar %>
   </p>
@@ -35,5 +36,6 @@
 <% end %>
      
   <%= f.button :submit, label: "Save" %>
+
 <% end %>
 
