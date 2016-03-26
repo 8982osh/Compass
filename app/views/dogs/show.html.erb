@@ -1,0 +1,33 @@
+
+
+<div class="row">
+  <div class="col-md-8">
+    <h2>Adoptable Dogs</h2>
+    <p><%= "Animal ID:" @dog.animal_id %></p>
+    <p><%= "Dog's Name:" @dog.name %></p>
+    <%= avatar_tag dog.avatar_url(:thumb).to_s %>
+  </div>
+      <ul>
+      	<li>@dog.gender</li>
+      	<li>@dog.weight</li>
+        <li>@dog.age</li>
+      	<li>@dog.breed_type</li>
+      	<li>@dog.breed</li>
+      	<li>@dog.cat_compatible</li>
+      	<li>@dog.dog_compatible</li>
+      	<li>@dog.human_compatible</li>
+      	<li>@dog.energy_level</li>
+      	<li>@dog.temperament</li>
+      	<li>@dog.fee</li>
+      </ul>
+      <p>@dog.description</p>
+  <div class="col-md-4">
+    	<%= link_to "edit", edit_dogs_path, class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>
+ 
+
+
+ 
+    

@@ -1,41 +1,83 @@
 
-<%= simple_form_for @dog, :html => { :class => 'form-vertical' } do |f| %>
-  <%= f.error_notification %>
+<%= form_for @dog do |f| %>
  
-  <%= f.input :animal_id, hint: "Animal ID begins with letter A" %>
-  <%= f.input :name %>
-  <%= f.input :gender, collection: ['Male', 'Female'], as: :radio_buttons %>
-  <%= f.input :weight %> 
-  <%= f.input :age, collection: 1..12 %>
-  <%= f.input :type, collection: [:purebreed, :blend], as: :radio_buttons %> 
-  <%= f.input :breed, collection: Dog::BREED, label: "Primary Breed" %>
-  <%= f.input :breed, collection: Dog::BREED, label: "Secondary Breed" %>              
-  <%= f.input :cat, collection: ['Unknown', 'Good with cats', 'Not good with cats'] %>
-  <%= f.input :dog, collection: ['Unkown', 'Good with dogs', 'Good with male dogs only', 
-                                 'Good with female dogs only', 'Not good with other dogs'] %>
-  <%= f.input :human, collection: ['Good with women only', 'Good with men only', 'Good with adults and kids', 'Not good with kids'] %>
-  <%= f.input :energy, collection: ['Very low', 'Low', 'Average', 'High', 'Very High'] %>
-  <%= f.input :temperament, collection: ['Very submissive', 'Somewhat submissive', 
-                                         'Average Submissive', 'Somewhat Dominant', 'Very Dominant'] %>   
-  <%= f.input :fee %>
-  <%= f.input :description, :size => "40x5" %>
-      
-  <%= form_for @dog, html: { multipart: true } do |f| %>
-  <p>
-    <label>Dog Picture</label>
-    <%= image_tag(@user.avatar_url) if @dog.avatar? %>
-    <%= f.file_field :avatar %>
-  </p>
+  <div class="form-group">
+    <%= f.label :animal_id %>
+    <%= f.text_field :animal_id, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group col-md-6">
+  <%= f.label :gender %>    
+  <%= f.select :gender, Dog::GENDER, class: 'form-control' %>
+    
+  </div>
+  <div class="form-group">
+    <%= f.label :weight %> 
+    <%= f.text_field :weight, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :age %>  
+    <%= f.select :age, Dog::AGE, class: 'form-control' %>  
+  </div>
+  <div class="form-group">
+    <%= f.label :breed_type %> 
+    <%= f.select :breed_type, Dog::BREED_TYPE,  class: 'form-control' %>  
+  </div>
+  <div class="form-group">
+  <%= f.label :primary_breed %>
+  <%= f.select :breed, Dog::BREED, class: 'form-control' %>     
+  </div>
+  <div class="form-group">
+    <%= f.label :secondary_breed %>
+    <%= f.select :breed, Dog::BREED, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :cat_compatibility %>            
+    <%= f.select :cat_compatibility, Dog::CAT_COMPATIBLE, class: 'form-control' %> 
+  </div>
+  <div class="form-group">
+    <%= f.label :dog_compatibility %>
+    <%= f.select :dog_compatibility, Dog::DOG_COMPATIBLE, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :human_compatibility %>
+    <%= f.select :human_compatibility, Dog::HUMAN_COMPATIBLE, class: 'form-control' %>
+ </div>
+  <div class="form-group">
+  <%= f.label :energy_level %> 
+  <%= f.select :energy_level, Dog::ENERGY_LEVEL, class: 'form-control' %> 
+ </div>
+  <div class="form-group"> 
+    <%= f.label :temperament %> 
+    <%= f.select :temperament, Dog::TEMPERAMENT, class: 'form-control' %> 
+  </div>  
+  <div class="form-group"> 
+    <%= f.label :fee %>
+    <%= f.text_field :fee, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_field :description, rows: 10 %>
+  </div>
 
-  <p>
-    <label>
-      <%= f.check_box :remove_avatar %>
-      Remove avatar
-    </label>
-  </p>
+  <div class="form-group">
+    <p>
+      <label>Current Avatar</label>
+        <%= image_tag(@avatar) %>
+        <%= f.file_field :avatar %>
+    </p>  
+    <p>
+      <label>
+        <%= f.check_box :remove_avatar %>
+        Remove avatar
+      </label>
+    </p>
+  <div class="form-group">   
+    <%= f.submit "Save", class: 'btn btn-success' %>
+  </div>
 <% end %>
-     
-  <%= f.button :submit, label: "Save" %>
 
-<% end %>
 
