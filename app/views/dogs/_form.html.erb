@@ -1,0 +1,24 @@
+<% simple_form_for @dog do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :animal_id, hint: "Animal ID begins with letter A" %>
+  <%= f.input :name %>
+  <%= f.input :gender, collection: 'Male'...'Female', Gender::GENDER, as: :radio_buttons %>
+  <%= f.input_text :weight, hint: "Enter whole numbers." %> 
+  <%= f.input :age, collection: 1..15, prompt: "Select age", Age::AGE %>
+  <%= f.input :breed, collection: 'Affenpinscher'..'Yorkshire Terrier', prompt: "Primary Breed", Breed::BREED %>
+  <%= f.input :breed, collection: 'Affenpinscher'..'Yorkshire Terrier', prompt: "Secondary Breed", Breed::BREED %>              
+  <%= f.input :breed, collection: "Purebreed".."Blend", as: :radio_buttions %>   
+  <%= f.input :cat_compatibility, collection: 'Unknown'..'Not good with cats', Cat::CAT %>
+  <%= f.input :dog_compatibility, collection: 'Unknown'..'Not good with other dogs', Dog::DOG %>
+  <%= f.input :human_compatibility, collection: 'Good with women only'..'Not good with kids', Human::HUMAN %>
+  <%= f.input :energy_level, collection: 'Very low'..'Very High', Energy::ENERGY %>
+  <%= f.input :temperament, collection: 'Very Submissive'..'Very Dominant', Temperament::TEMPERAMENT %>  
+  <%= f.input :fee %>
+  <%= f.input :description, :size => "40x5" %>
+      
+  <%= form_tag @dog do |f| %>
+    <%= f.file_field :picture %>
+  <% end %>
+     
+  <%= f.button :submit, label: "Save" %>
+<% end %>

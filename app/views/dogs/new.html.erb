@@ -1,0 +1,25 @@
+<h1>New Dog</h1>
+<% simple_form_for @dog do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :animal_id, hint: "Animal ID begins with letter A" %>
+  <%= f.input :name %>
+  <%= f.input :gender, collection: [:male, :female], as: :radio_buttons %>
+  <%= f.input :weight %> 
+  <%= f.input :age, collection: 1..15 %>
+  <%= f.input :breed, collection: Breed::BREED %>
+  <%= f.input :breed, collection: Breed::BREED %>              
+  <%= f.input :purebreed, collection: [:purebreed, :blend], as: :radio_buttons %>   
+  <%= f.input :cat_compatibility, collection_select: Cat::CAT %>
+  <%= f.input :dog_compatibility, collection_select: Dog::DOG %>
+  <%= f.input :human_compatibility, collection_select: Human::HUMAN %>
+  <%= f.input :energy_level, collection_select: Energy::ENERGY %>
+  <%= f.input :temperament, collection_select: Temperament::TEMPERAMENT %>  
+  <%= f.input :fee, as: :integer %>
+  <%= f.input :description, :size => "40x5" %>
+      
+  <%= form_tag @dog do |f| %>
+    <%= f.file_field :picture %>
+  <% end %>
+     
+  <%= f.button :submit, label: "Save" %>
+<% end %>
