@@ -1,31 +1,32 @@
+ <h2>Adoptable Dogs</h2>
 
-
-<div class="row">
-  <div class="col-md-8">
-    <h2>Adoptable Dogs</h2>
-    <p><%= "Animal ID:" @dog.animal_id %></p>
-    <p><%= "Dog's Name:" @dog.name %></p>
-    <%= avatar_tag dog.avatar_url(:thumb).to_s %>
-  </div>
+  <div class="row">
+    <div class="col-md-8">
+  
+ 
+    <p>Animal ID: <%= @dog.animal_id %></p>
+    <p>Name: <%= @dog.name %></p>
+    <p><%= image_tag @dog.avatar.thumb.url %><p>
+  
       <ul>
-      	<li>@dog.gender</li>
-      	<li>@dog.weight</li>
-        <li>@dog.age</li>
-      	<li>@dog.breed_type</li>
-      	<li>@dog.breed</li>
-      	<li>@dog.cat_compatible</li>
-      	<li>@dog.dog_compatible</li>
-      	<li>@dog.human_compatible</li>
-      	<li>@dog.energy_level</li>
-      	<li>@dog.temperament</li>
-      	<li>@dog.fee</li>
-      </ul>
-      <p>@dog.description</p>
-  <div class="col-md-4">
-    	<%= link_to "edit", edit_dogs_path, class: 'btn btn-success' %>
-    <% end %>
-  </div>
+        <li>Gender: <%= @dog.gender %></li>
+        <li>Weight: <%= @dog.weight %> lbs</li>
+        <li>Age: <%= @dog.age %></li>
+        <li>Breed Type: <%= @dog.breed_type %></li>
+        <li>Primary Breed: <%= @dog.breed_primary %></li>
+        <li>Cat Compatibility: <%= @dog.cat_compatibility %></li>
+        <li>Dog Compatibility: <%= @dog.dog_compatibility %></li>
+        <li>Human Compatibility: <%= @dog.human_compatibility %></li>
+        <li>Energy Level: <%= @dog.energy_level %></li>
+        <li>Temperament: <%= @dog.temperament %></li>
+        <li>Adoption Fee: $<%= @dog.fee %></li>
+     </ul>
+      <p><%= @dog.description %></p>
+      
+    </div>
 </div>
+
+
  
 
 

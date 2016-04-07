@@ -2,23 +2,22 @@ class Dog < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
-  attr_accessor :animal_id, :name, :gender, :age, :breed_type, :breed, :cat_compatible, :dog_compatible, :human_compatible, :energy_level, :temperament, :fee, :description, :avatar
+  attr_accessor :gender_choice, :how_old, :pure_or_mix, :breed_choice, :cat_compatible, :dog_compatible, :human_compatible, :energy, :temperament_level
   
+  #validates :animal_id, length: { is: 7 }, presence: true 
+  #validates :name, :animal_id, presence :true
   
-
-  validates :animal_id, length: { is: 7 }, presence: true 
-  
-  GENDER = ['Male', 'Female']
-  AGE = ['2 Months', '3 Months', '4 Months', '5 Months', '6 Months', '7 Months', '8 Months', '9 Months', '10 Months', '11 Months', '1 Year', '2 Year', 
+  GENDER_CHOICE = ['Male', 'Female']
+  HOW_OLD = ['2 Months', '3 Months', '4 Months', '5 Months', '6 Months', '7 Months', '8 Months', '9 Months', '10 Months', '11 Months', '1 Year', '2 Years', 
     '3 Years', '4 Years', '5 Years', '6 Years', '7 Years']
-  BREED_TYPE = ['Purebreed', 'Blend']
+  PURE_OR_MIX_BREED = ['Purebreed', 'Blend']
   CAT_COMPATIBLE = ['Unknown', 'Good with cats', 'Not good with cats']
   DOG_COMPATIBLE = ['Unknown', 'Good with dogs', 'Good with male dogs only', 'Good with female dogs only', 'Not good with other dogs']
   HUMAN_COMPATIBLE = ['Good with women only', 'Good with men only', 'Good with adults and kids', 'Not good with kids']
-  ENERGY_LEVEL = ['Very low', 'Low', 'Average', 'High', 'Very High']
-  TEMPERAMENT = ['Very submissive', 'Somewhat submissive', 'Average Submissive', 'Somewhat Dominant', 'Very Dominant']
+  ENERGY = ['Very low', 'Low', 'Average', 'High', 'Very High']
+  TEMPERAMENT_LEVEL = ['Very submissive', 'Somewhat submissive', 'Average Submissive', 'Somewhat Dominant', 'Very Dominant']
   
-  BREED = 
+  BREED_CHOICE = 
   [
   'Affenpinscher', 
   'Afghan Hound ',

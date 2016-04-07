@@ -1,5 +1,5 @@
 
-<%= form_for @dog do |f| %>
+<%= form_for @dog, html: { multipart: true } do |f| %>
  
   <div class="form-group">
     <%= f.label :animal_id %>
@@ -9,31 +9,52 @@
     <%= f.label :name %>
     <%= f.text_field :name, class: 'form-control' %>
   </div>
-  <div class="form-group col-md-6">
-  <%= f.label :gender %>    
-  <%= f.select :gender, Dog::GENDER, class: 'form-control' %>
-    
+
+  <div class="form-group">
+    <%= f.label :gender %>    
+    <%= f.select :gender, Dog::GENDER_CHOICE, class: 'form-control' %>
   </div>
+<!--
+  <div class="form-group">
+    <%#= radio_button_tag(:gender, "male dog") %>
+    <%#= label_tag(:gender_male, "Male") %>
+    <%#= radio_button_tag(:gender, "female dog") %>
+    <%#= label_tag(:gender_female, "Female") %>
+ </div>
+-->
   <div class="form-group">
     <%= f.label :weight %> 
     <%= f.text_field :weight, class: 'form-control' %>
   </div>
   <div class="form-group">
     <%= f.label :age %>  
-    <%= f.select :age, Dog::AGE, class: 'form-control' %>  
+    <%= f.select :age, Dog::HOW_OLD, class: 'form-control' %>  
   </div>
+  
   <div class="form-group">
     <%= f.label :breed_type %> 
-    <%= f.select :breed_type, Dog::BREED_TYPE,  class: 'form-control' %>  
+    <%= f.select :breed_type, Dog::PURE_OR_MIX_BREED, class: 'form-control' %>  
   </div>
+<!--
   <div class="form-group">
-  <%= f.label :primary_breed %>
-  <%= f.select :breed, Dog::BREED, class: 'form-control' %>     
-  </div>
+    <%#= radio_button_tag(:breed_type, "purebreed") %>
+    <%#= label_tag(:purebreed, "Purebreed Dog") %>
+    <%#= radio_button_tag(:breed_type, "blend") %>
+    <%#= label_tag(:blend, "Blend Dog") %>
+ </div>  
+ -->
+ <div class="form-group">
+    <%= f.label :breed_primary %>
+    <%= f.select :breed_primary, Dog::BREED_CHOICE, class: 'form-control' %>     
+ </div>
+
+ <!--
   <div class="form-group">
-    <%= f.label :secondary_breed %>
-    <%= f.select :breed, Dog::BREED, class: 'form-control' %>
+    <%#= f.label :secondary_breed %>
+    <%#= f.select :breed, Dog::BREED, class: 'form-control' %>
   </div>
+   
+-->
   <div class="form-group">
     <%= f.label :cat_compatibility %>            
     <%= f.select :cat_compatibility, Dog::CAT_COMPATIBLE, class: 'form-control' %> 
@@ -47,12 +68,12 @@
     <%= f.select :human_compatibility, Dog::HUMAN_COMPATIBLE, class: 'form-control' %>
  </div>
   <div class="form-group">
-  <%= f.label :energy_level %> 
-  <%= f.select :energy_level, Dog::ENERGY_LEVEL, class: 'form-control' %> 
+    <%= f.label :energy_level %> 
+    <%= f.select :energy_level, Dog::ENERGY, class: 'form-control' %> 
  </div>
   <div class="form-group"> 
     <%= f.label :temperament %> 
-    <%= f.select :temperament, Dog::TEMPERAMENT, class: 'form-control' %> 
+    <%= f.select :temperament, Dog::TEMPERAMENT_LEVEL, class: 'form-control' %> 
   </div>  
   <div class="form-group"> 
     <%= f.label :fee %>
@@ -60,21 +81,22 @@
   </div>
   <div class="form-group">
     <%= f.label :description %>
-    <%= f.text_field :description, rows: 10 %>
+    <%= f.text_field :description, rows: 10, class: 'form-control' %>
   </div>
-
+ 
   <div class="form-group">
     <p>
-      <label>Current Avatar</label>
-        <%= image_tag(@avatar) %>
+      <!--<label>Current Avatar</label>-->
+        <%= f.label :avatar %><br>
         <%= f.file_field :avatar %>
-    </p>  
-    <p>
-      <label>
-        <%= f.check_box :remove_avatar %>
-        Remove avatar
-      </label>
-    </p>
+        <% if f.object.avatar? %>
+          <%= avatar_tag f.object.avatar.thumb.url %>
+          <% f.label :remove_avatar %>
+          <% f.check_box :remove_avatar %>
+        <% end %>
+    </p> 
+  </div>
+  
   <div class="form-group">   
     <%= f.submit "Save", class: 'btn btn-success' %>
   </div>

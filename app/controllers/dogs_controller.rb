@@ -1,4 +1,5 @@
 class DogsController < ApplicationController
+
   def index
     @dogs = Dog.all
   end
@@ -11,7 +12,8 @@ class DogsController < ApplicationController
   end
 
   def create
-    @dog = Dog.new(dog_params[:id])
+    @dog = Dog.new(dog_params)
+
     #@dog.name = @dog.name.capitalize
     #@dog.animal_id = "A" + @dog.animal_id
      # raise @dog.inspect
@@ -24,19 +26,21 @@ class DogsController < ApplicationController
   end
 
   def edit
-    @dog = Dog.find(dog_params[:id])  
+    @dog = Dog.find(dog_params[:id]) 
+    @dogs = dogs 
   end
 
   def contact
   end
 
   def show
-    @dog = Dog.find(dog_params[:id]) 
+    @dog = Dog.find(params[:id]) 
   end
 
 private
+
   def dog_params
-    params.require(:dog).permit(:animal_id, :name, :gender, :weight, :age, :breed_type, :breed_primary, :breed_secondary,
-     :cat_compatibility, :dog_compatibility, :human_compatibility, :energy_level, :temperament, :fee, :description, :avatar)
+    params.require(:dog).permit(:animal_id, :name, :gender, :weight, :age, :breed_type, :breed_primary, 
+         :cat_compatibility, :dog_compatibility, :human_compatibility, :energy_level, :temperament, :fee, :description, :avatar, :remove_avatar)
   end
 end
